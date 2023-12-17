@@ -17,10 +17,11 @@ const applicationSchema=new mongoose.Schema({
         course_fee:{type:Number}
     },
     degree:{type:String,required:true},
-    deadline:{type:Date,},
+    deadline:{type:Date},
     application_link:{type:String},
     application_status:{type:String}
 });
+
 
 const Application=mongoose.model('Application',applicationSchema);
 

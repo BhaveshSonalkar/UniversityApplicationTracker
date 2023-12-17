@@ -2,7 +2,6 @@ const mongoose=require('mongoose');
 const bcrypt=require('bcrypt');
 const validator=require('validator');
 
-
 const userSchema=new mongoose.Schema({
     username:{
         type: String,
@@ -31,24 +30,15 @@ const userSchema=new mongoose.Schema({
     }]
 });
 
-//save the user if it doesn't exist
-userSchema.pre('save', async function(next){
+//method to register the user
+userSchema.methods.registerUser=async function(){
     try{
         const salt=await bcrypt.genSalt(10);
         const hashedPassword= await bcrypt.hash(this.password,salt);
         this.password=hashedPassword;
-        next();   
+        await this.save();  
     }
     catch(error){
-        next(error);
-    }
-});
-
-//method to delete the User
-userSchema.methods.deleteUser=async function(){
-    try{
-        await this.deleteOne();
-    } catch(error){
         throw new Error(error.message);
     }
 };
