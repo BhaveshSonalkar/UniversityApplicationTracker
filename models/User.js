@@ -2,6 +2,8 @@ const mongoose=require('mongoose');
 const bcrypt=require('bcrypt');
 const validator=require('validator');
 
+//user schema
+
 const userSchema=new mongoose.Schema({
     username:{
         type: String,
@@ -25,7 +27,7 @@ const userSchema=new mongoose.Schema({
         }
     },
     applications:[{
-        type: mongoose.Schema.Types.ObjectId,  
+        type:mongoose.Schema.Types.ObjectId,
         ref:'Application'
     }]
 });

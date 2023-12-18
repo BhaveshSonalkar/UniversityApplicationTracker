@@ -20,6 +20,9 @@ app.use(express.json());
 const userRouter= require('./routes/userRoutes');
 app.use('/user',userRouter);
 
+const ApplicationRouter=require('./routes/applicationRoutes');
+app.use('/application',ApplicationRouter);
+
 //Define routes
 app.get('/',(req,res)=>{
     res.send('University Tracking API by @bhavesh');
